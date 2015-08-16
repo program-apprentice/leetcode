@@ -15,7 +15,7 @@ import java.util.HashMap;
  * which the length is 3. For "bbbbb" the longest substring is "b", with the length of 1.
  * */
 public class LongestSubstringWithoutRepeatingCharacters_3 {
-    public int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstring_v1(String s) {
         if(s == null || s.length() == 0) {
             return 0;
         }
@@ -40,5 +40,29 @@ public class LongestSubstringWithoutRepeatingCharacters_3 {
             map.put(cur, i);
         }
         return maxLength;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        boolean[] record = new boolean[256];
+        char cur = 0;
+        int max = 0;
+        int start = 0;
+        for(int i = 0; i < s.length(); i++) {
+            cur = s.charAt(i);
+            if(record[cur]) {
+                while(s.charAt(start) != cur ) {
+                    record[s.charAt(start)] = false;
+                    start++;
+                }
+                start ++;
+            } else {
+                record[cur] = true;
+            }
+            max = max > (i - start + 1) ? max : i - start + 1;
+        }
+        return max;
     }
 }
