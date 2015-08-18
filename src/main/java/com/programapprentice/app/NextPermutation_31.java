@@ -4,6 +4,7 @@ package com.programapprentice.app;
  * User: program-apprentice
  * Date: 8/17/15
  * Time: 7:36 PM
+ * Finished Time: 8:25 PM
  */
 /**
  Implement next permutation, which rearranges numbers into the lexicographically next
