@@ -14,6 +14,12 @@ public class Util {
         }
     }
 
+    public static void printListInteger(List<Integer> list) {
+        for(Integer s : list) {
+            System.out.print(s + " ");
+        }
+    }
+
     public static void printListOfListNumbers(List<List<Integer>> input) {
         for(List<Integer> item: input) {
             for(Integer i : item) {
