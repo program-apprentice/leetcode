@@ -29,4 +29,14 @@ public class Util {
         }
     }
 
+    // assume the length for each item in input are the same
+    public static char[][] convertStringsToCharArray(String[] input) {
+        int row = input.length;
+        int col = input[0].length();
+        char[][] output = new char[row][col];
+        for(int i = 0; i < row; i++) {
+            output[i] = input[i].toCharArray();
+        }
+        return output;
+    }
 }
