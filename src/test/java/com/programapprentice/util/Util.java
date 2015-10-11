@@ -14,6 +14,22 @@ public class Util {
         }
     }
 
+    public static void printListToken(List<String> list) {
+        for(String s : list) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printListOfListString(List<List<String>> list) {
+        for(List<String> s : list) {
+            for(String item : s) {
+                System.out.print(item + " ");
+            }
+            System.out.println("");
+        }
+    }
+
     public static void printListInteger(List<Integer> list) {
         for(Integer s : list) {
             System.out.print(s + " ");

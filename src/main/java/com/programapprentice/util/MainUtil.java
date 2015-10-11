@@ -13,4 +13,11 @@ public class MainUtil {
             System.out.println(s);
         }
     }
+
+    public static void printListToken(List<String> list) {
+        for(String s : list) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+    }
 }
