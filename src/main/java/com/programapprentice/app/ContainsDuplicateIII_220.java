@@ -1,5 +1,7 @@
 package com.programapprentice.app;
 
+import java.util.TreeSet;
+
 /**
  * User: ruijiang
  * Date: 10/11/15
@@ -22,18 +24,30 @@ public class ContainsDuplicateIII_220 {
         return false;
     }
 
+
+    // TreeSet is a red-black tree implementation
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
         if(nums == null || nums.length == 0) {
             return false;
-        }int n = nums.length;
-        int[] record = new int[n];
-        record[0] = 0;
+        }
+        if(k < 0 || t < 0) {
+            return false;
+        }
+        int n = nums.length;
+        TreeSet<Integer> treeSet = new TreeSet<Integer>();
         for(int i = 0; i < nums.length; i++) {
-            
-            for(int step = 0; step <= k && (i+step) < nums.length; step++) {
-                if(Math.abs(nums[i] - nums[i+step]) < t) {
-                    return true;
-                }
+            int cur = nums[i];
+            Integer floor = treeSet.floor(cur);
+            if(floor != null && floor >= cur - t) {
+                return true;
+            }
+            Integer ceiling = treeSet.ceiling(cur);
+            if(ceiling != null && ceiling <= cur + t) {
+                return true;
+            }
+            treeSet.add(cur);
+            if(i >= k) {
+                treeSet.remove(new Integer(nums[i-k]));
             }
         }
         return false;
