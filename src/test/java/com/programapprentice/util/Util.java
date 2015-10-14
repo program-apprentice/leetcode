@@ -30,6 +30,13 @@ public class Util {
         }
     }
 
+    public static void printArrayInteger(int[] list) {
+        for(int s : list) {
+            System.out.print(s + " ");
+        }
+    }
+
+
     public static void printListInteger(List<Integer> list) {
         for(Integer s : list) {
             System.out.print(s + " ");
