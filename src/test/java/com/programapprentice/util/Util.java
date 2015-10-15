@@ -43,6 +43,15 @@ public class Util {
         }
     }
 
+    public static void printListOfArrayNumbers(List<int[]> input) {
+        for(int[] item: input) {
+            for(int i : item) {
+                System.out.print(i + " ");
+            }
+            System.out.println("");
+        }
+    }
+
     public static void printListOfListNumbers(List<List<Integer>> input) {
         for(List<Integer> item: input) {
             for(Integer i : item) {
