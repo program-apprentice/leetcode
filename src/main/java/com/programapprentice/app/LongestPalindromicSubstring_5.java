@@ -89,4 +89,58 @@ public class LongestPalindromicSubstring_5 {
         }
         return max;
     }
+
+    public String preProcess(String s) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("^");
+        sb.append("#");
+        for(int i = 0; i < s.length(); i++) {
+            sb.append(s.charAt(i));
+            sb.append("#");
+        }
+        sb.append("$");
+        return sb.toString();
+    }
+
+    // complexity is O(n)
+    // http://articles.leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
+    // http://www.felix021.com/blog/read.php?2040 (better explaination)
+    public String longestPalindromeManacher(String s) {
+        if(s == null || s.length() <= 1) {
+            return s;
+        }
+        String t = preProcess(s);
+        int n = t.length();
+        int[] record = new int[n];
+        int centerIdx = 0;
+        int rightIdx = 0;
+        for(int i = 1; i < n-1; i++) {
+            int iMirror = 2 * centerIdx - i;
+            if(rightIdx > i) {
+                record[i] = Math.min(rightIdx-i, record[iMirror]);
+            } else {
+                record[i] = 0;
+            }
+
+            while(t.charAt(i+1+record[i]) == t.charAt(i-1-record[i])) {
+                record[i]++;
+            }
+
+            if(i + record[i] > rightIdx) {
+                centerIdx = i;
+                rightIdx = i + record[i];
+            }
+        }
+
+        int maxLen = 0;
+        centerIdx = 0;
+        for(int i = 1; i < n-1; i++) {
+            if(record[i] > maxLen) {
+                maxLen = record[i];
+                centerIdx = i;
+            }
+        }
+
+        return s.substring((centerIdx-1-maxLen)/2, (centerIdx-1-maxLen)/2+maxLen);
+    }
 }
